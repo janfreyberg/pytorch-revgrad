@@ -1,0 +1,88 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pytorch-swag
+  namespace: eai-docs
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: pytorch-swag
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: nginx-cfg
+  namespace: eai-docs
+data:
+  nginx.conf: |-
+    user  nginx;
+    worker_processes  1;
+
+    error_log  /var/log/nginx/error.log warn;
+    pid        /var/run/nginx.pid;
+
+    events {
+        worker_connections  1024;
+    }
+
+    http {
+        include       /etc/nginx/mime.types;
+        default_type  application/octet-stream;
+        log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                          '$status $body_bytes_sent "$http_referer" '
+                          '"$http_user_agent" "$http_x_forwarded_for"';
+        access_log  /var/log/nginx/access.log  main;
+        sendfile        on;
+        keepalive_timeout  65;
+        gzip  on;
+
+        server {
+            listen       80 default;
+            server_name  localhost;
+            location / {
+                root   /var/www/;
+                index  index.html index.htm;
+            }
+            error_page   500 502 503 504  /50x.html;
+            location = /50x.html {
+                root   /usr/share/nginx/html;
+            }
+        }
+    }
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pytorch-swag
+  namespace: eai-docs
+spec:
+  replicas: 1
+  revisionHistoryLimit: 4
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: pytorch-swag
+    spec:
+      containers:
+      - name: pytorch-swag
+        image: nginx
+        # command: ["nginx", "-g", "daemon off;", "-c", "/etc/pytorch-swag/nginx.conf"]
+        resources:
+          requests:
+            cpu: 0.1
+            memory: 512M
+        ports:
+            - containerPort: 80
+        volumeMounts:
+        - mountPath: /etc/pytorch-swag
+          name: nginx-cfg
+      volumes:
+      - name: nginx-cfg
+        configMap:
+            name: nginx-cfg
