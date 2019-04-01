@@ -16,3 +16,5 @@ _static
 tests/database.ini
 api/config.ini
 scratchpad.ipynb
+.tox
+pip-wheel-metadata
