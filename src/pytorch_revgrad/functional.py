@@ -9,7 +9,7 @@ class RevGrad(Function):
         return output
 
     @staticmethod
-    def backward(ctx, grad_output):
+    def backward(ctx, grad_output):  # pragma: no cover
         grad_input = None
         if ctx.needs_input_grad[0]:
             grad_input = -grad_output
