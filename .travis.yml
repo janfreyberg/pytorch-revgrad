@@ -10,11 +10,10 @@ script:
   - pip install poetry
   - poetry install
   # - pip install -qq flake8 docargs coverage coveralls
-  - flake8 src
   # - pip install -qq .
   # run the test suite
-  - poetry run python -m pytest --cov=src/
+  - poetry run python -m pytest --cov=src/ --flake8
   # - coverage run --source=src -m pytest
-  - coveralls
+  - poetry run coveralls
   # test that all documentation notebooks can still be run:
   # - find docs -name '*.ipynb' -o -name 'examples/*.ipynb' | xargs jupyter nbconvert --to notebook --execute
