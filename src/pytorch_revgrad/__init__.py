@@ -1,1 +1,1 @@
-from .module import RevGrad
+from .module import RevGrad  # noqa: F401
