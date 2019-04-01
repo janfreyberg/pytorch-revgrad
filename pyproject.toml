@@ -20,6 +20,9 @@ pytest = "^4.4"
 tox = "^3.8"
 pytest-cov = "^2.6"
 ipython = "^7.4"
+flake8 = "^3.7"
+pytest-flake8 = "^1.0"
+coveralls = "^1.7"
 
 [tool.black]
 line-length = 79
