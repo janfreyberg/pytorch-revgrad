@@ -7,11 +7,13 @@ python:
   - "3.6"
   - "3.7"
 script:
-  - pip install -qq flake8 docargs coverage coveralls
+  - poetry install
+  # - pip install -qq flake8 docargs coverage coveralls
   - flake8 src
-  - pip install -qq .
+  # - pip install -qq .
   # run the test suite
-  - coverage run --source=src -m pytest
+  - poetry run python -m pytest --cov=src/
+  # - coverage run --source=src -m pytest
   - coveralls
   # test that all documentation notebooks can still be run:
   # - find docs -name '*.ipynb' -o -name 'examples/*.ipynb' | xargs jupyter nbconvert --to notebook --execute
