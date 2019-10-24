@@ -1,28 +1,28 @@
 [tool.poetry]
 name = "pytorch-revgrad"
-version = "0.0.1"
+version = "0.0.2"
 description = "Gradient reversal layer for pytorch."
 authors = ["Jan Freyberg <jan.freyberg@gmail.com>"]
 readme = 'README.md'
 
 [tool.poetry.dependencies]
-torch = "^1.0"
-numpy = "^1.16"
-python = "^3.5"
+torch = ">=1.0"
+numpy = ">=1.16"
+python = ">=3.5"
 
 [tool.poetry.dev-dependencies]
-sphinx = "^1.8"
-sphinx-rtd-theme = "^0.4.3"
-recommonmark = "^0.5.0"
-m2r = "^0.2.1"
-numpydoc = "^0.8.0"
-pytest = "^4.4"
-tox = "^3.8"
-pytest-cov = "^2.6"
-ipython = "^7.4"
-flake8 = "^3.7"
-pytest-flake8 = "^1.0"
-coveralls = "^1.7"
+sphinx = ">=1.8"
+sphinx-rtd-theme = ">=0.4.3"
+recommonmark = ">=0.5.0"
+m2r = ">=0.2.1"
+numpydoc = ">=0.8.0"
+pytest = ">=4.4"
+tox = ">=3.8"
+pytest-cov = ">=2.6"
+ipython = ">=7.4"
+flake8 = ">=3.7"
+pytest-flake8 = ">=1.0"
+coveralls = ">=1.7"
 
 [tool.black]
 line-length = 79
