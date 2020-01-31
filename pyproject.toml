@@ -18,6 +18,7 @@ requires = [
 [tool.flit.metadata.requires-extra]
 test = [
     "tox",
+    "tox-travis",
     "pytest",
     "pytest-cov",
     "flake8",

@@ -6,11 +6,9 @@ python:
   - "3.5"
   - "3.6"
   - "3.7"
+  - "3.8"
 install:
-  - pip install poetry
-  - poetry install 
+  - pip install flit
+  - flit install
 script:
-  # run the test suite
-  - poetry run python -m pytest --cov=src/ --flake8
-  # submit the coverage
-  - poetry run coveralls
+  tox
