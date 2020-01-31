@@ -8,6 +8,7 @@ python:
   - "3.7"
   - "3.8"
 install:
-  - pip install tox tox-travis
+  - pip install flit
+  - flit install
 script:
-  tox
+  - python -m pytest
