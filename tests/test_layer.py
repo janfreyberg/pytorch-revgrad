@@ -8,7 +8,7 @@ def test_gradients_inverted():
     revnetwork = torch.nn.Sequential(copy.deepcopy(network), RevGrad())
 
     inp = torch.randn(8, 5)
-    outp = torch.randn(8)
+    outp = torch.randn(8, 1)
 
     criterion = torch.nn.MSELoss()
 
